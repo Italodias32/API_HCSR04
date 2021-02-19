@@ -1,14 +1,42 @@
+/*
+ * ***************************************************************
+ *  API name    : HCSR04
+ *  API files   : HCSR04.c, HCSR04.c
+ *  file		: HCSR04.c
+ *  authors		: Italo Dias, Sarah Carine
+ *  university  : Federal University of Minas Gerais
+ *  license     : GNU General Public License v3.0
+ *  date        : 02/19/21
+ *  modified	: 02/19/21
+ *  This code implements a library for HCSR04
+ *
+ *  This API was developed as an assignment for Embedded Systems
+ *  Programming class at the Federal University of Minas Gerais
+ ***************************************************************
+ *  SOFTWARE SETUP:
+ *  Include HCSR04.h in main.c
+ *
+ ***************************************************************
+ *  HARDWARE SETUP:
+ *
+ *  VSS = GND
+ *  VDD = 5v
+ *  Trigger = - Connect in Digital Pin - Output
+ *  Echo = - Connect in Digital Pin - Input
+ *****************************************************************
+ */
 #include "HCSR04.h"
 
-ultrasonic HCSR04_generate(GPIO_Port port_trig[],GPIO_Pin pin_trig,GPIO_Port port_echo[],GPIO_Pin pin_echo){
-	ultrasonic hcsr04;
-	hcsr04.trig_port = port_trig;
-	hcsr04.trig_pin = pin_trig;
-	hcsr04.echo_port = port_echo;
-	hcsr04.echo_pin = pin_echo;
-	return hcsr04;
-}
+///********************************* Global Variables ***************************************/
+float gain = 2.8;
 
+///******************************* Function definitions *************************************/
+///**************************** Static function definition **********************************/
+/**
+  * @brief Microsecond delay
+  * @param[microSec] Microsecond delay time
+  * @retval None
+  */
 void uDelay(uint32_t microSec){
 	if(microSec < 2){
 		microSec = 2;
@@ -21,35 +49,91 @@ void uDelay(uint32_t microSec){
 	microTIM->SR &= ~(0x0001);
 }
 
+/**
+  * @brief Create a hcsr04 sensor
+  * @param[port_trig] Trig port configuration
+  * @param[pin_trig] Trig pin configuration
+  * @param[port_echo] Echo port configuration
+  * @param[pin_echo] Echo pin configuration
+  * @retval An object ultrasonic
+  */
+ultrasonic HCSR04_generate(GPIO_Port port_trig[],GPIO_Pin pin_trig,GPIO_Port port_echo[],GPIO_Pin pin_echo){
+	ultrasonic hcsr04;
+	hcsr04.trig_port = port_trig;
+	hcsr04.trig_pin = pin_trig;
+	hcsr04.echo_port = port_echo;
+	hcsr04.echo_pin = pin_echo;
+	return hcsr04;
+}
+
+/**
+  * @brief Adjust the gain for fine adjustments during execution
+  * @param[gainFactor] Gain value for adjustment
+  * @retval None
+  */
+void adjustment(float gainFactor){
+	gain = gain*gainFactor;
+}
+
+/**
+  * @brief Indicates the value in cm
+  * @param[hcsr04] Ultrasonic object
+  * @retval Distance in cm
+  */
 float distance_cm(ultrasonic hcsr04){
 	uint32_t cont = 0;
 
-	HAL_GPIO_WritePin(hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
 	uDelay(2);
 
-	HAL_GPIO_WritePin(hcsr04.trig_port, &hcsr04.trig_pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_SET);
 	uDelay(10);
-	HAL_GPIO_WritePin(hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
 
-	while(HAL_GPIO_ReadPin(hcsr04.echo_port,hcsr04.echo_pin) == GPIO_PIN_RESET);
+	while(HAL_GPIO_ReadPin(*hcsr04.echo_port, hcsr04.echo_pin) == GPIO_PIN_RESET);
 
-	while(HAL_GPIO_ReadPin(hcsr04.echo_port,hcsr04.echo_pin) == GPIO_PIN_SET)
+	while(HAL_GPIO_ReadPin(*hcsr04.echo_port, hcsr04.echo_pin) == GPIO_PIN_SET)
 	{
 		 cont++;
 		 uDelay(2);
 	};
 
-	return (cont + 0.0f)*2.8*speedSound;
+	return (cont + 0.0f)*gain*speedSound;
 }
 
+/**
+  * @brief Indicates the value in m
+  * @param[hcsr04] Ultrasonic object
+  * @retval Distance in m
+  */
 float distance_m(ultrasonic hcsr04){
 	return distance_cm(hcsr04)/100;
 }
 
+/**
+  * @brief Indicates the value in mm
+  * @param[hcsr04] Ultrasonic object
+  * @retval Distance in mm
+  */
 float distance_mm(ultrasonic hcsr04){
 	return distance_cm(hcsr04)*10;
 }
 
+/**
+  * @brief Indicates the value in inches
+  * @param[hcsr04] Ultrasonic object
+  * @retval Distance in inches
+  */
+float distance_inch(ultrasonic hcsr04){
+	return distance_cm(hcsr04)/2.54;
+}
+
+/**
+  * @brief Indicates the speed relative to the sensor direction
+  * @param[hcsr04] Ultrasonic object
+  * @param[time] Time interval for speed calculation
+  * @retval Float indicating the speed at which the object approaches or moves away from the sensor
+  */
 float forwardSpeed(ultrasonic hcsr04, float time){
 	float x_i = distance_m(hcsr04);
 	int delta_t = (int)1000*time;
@@ -58,6 +142,13 @@ float forwardSpeed(ultrasonic hcsr04, float time){
 	return (x_f-x_i)/time;
 }
 
+/**
+  * @brief Indicates the speed of occurrence of 2 consecutive events
+  * @param[hcsr04] Ultrasonic object
+  * @param[distance] Route size for speed calculation
+  * @param[underLimit] Detected minimum value
+  * @retval Float with the detection speed value of two following events
+  */
 float crossSpeed(ultrasonic hcsr04, float distance, float underLimit){
 	int flag = 0;
 	int cont = 0;
@@ -73,9 +164,16 @@ float crossSpeed(ultrasonic hcsr04, float distance, float underLimit){
 			break;
 		}
 	}
-	return distance/((cont + 0.0f)*2.8);
+	return distance/((cont + 0.0f)*gain);
 }
 
+/**
+  * @brief Indicates whether an object is within the range
+  * @param[hcsr04] Ultrasonic object
+  * @param[underLimit] Under limit of the value range
+  * @param[upperLimit] Upper limit of the value range
+  * @retval Boolean indicating whether the object is within the limits
+  */
 bool itsBetween(ultrasonic hcsr04, float underLimit, float upperLimit){
 	if((distance_cm(hcsr04) > underLimit) & (distance_cm(hcsr04) > upperLimit)){
 		return true;

@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000a214  00000000  00000000  00020035  2**0
+ 12 .debug_info   0000a230  00000000  00000000  00020035  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 0000175c  00000000  00000000  0002a249  2**0
+ 13 .debug_abbrev 0000175c  00000000  00000000  0002a265  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 00000b60  00000000  00000000  0002b9a8  2**3
+ 14 .debug_aranges 00000b68  00000000  00000000  0002b9c8  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00000a98  00000000  00000000  0002c508  2**3
+ 15 .debug_ranges 00000aa0  00000000  00000000  0002c530  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  0001793f  00000000  00000000  0002cfa0  2**0
+ 16 .debug_macro  0001793f  00000000  00000000  0002cfd0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00008c4f  00000000  00000000  000448df  2**0
+ 17 .debug_line   00008c62  00000000  00000000  0004490f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    00089e9c  00000000  00000000  0004d52e  2**0
+ 18 .debug_str    00089eaa  00000000  00000000  0004d571  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  000d73ca  2**0
+ 19 .comment      0000007b  00000000  00000000  000d741b  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000031c4  00000000  00000000  000d7448  2**2
+ 20 .debug_frame  000031ec  00000000  00000000  000d7498  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1067,13 +1067,13 @@ ultrasonic HCSR04_generate(GPIO_Port port_trig[],GPIO_Pin pin_trig,GPIO_Port por
  8000ca6:	613b      	str	r3, [r7, #16]
 	hcsr04.trig_pin = pin_trig;
  8000ca8:	88fb      	ldrh	r3, [r7, #6]
- 8000caa:	617b      	str	r3, [r7, #20]
+ 8000caa:	82bb      	strh	r3, [r7, #20]
 	hcsr04.echo_port = port_echo;
  8000cac:	683b      	ldr	r3, [r7, #0]
  8000cae:	61bb      	str	r3, [r7, #24]
 	hcsr04.echo_pin = pin_echo;
  8000cb0:	8d3b      	ldrh	r3, [r7, #40]	; 0x28
- 8000cb2:	61fb      	str	r3, [r7, #28]
+ 8000cb2:	83bb      	strh	r3, [r7, #28]
 	return hcsr04;
  8000cb4:	68fb      	ldr	r3, [r7, #12]
  8000cb6:	461c      	mov	r4, r3
@@ -1157,10 +1157,10 @@ float distance_cm(ultrasonic hcsr04){
  8000d3c:	2300      	movs	r3, #0
  8000d3e:	617b      	str	r3, [r7, #20]
 
-	HAL_GPIO_WritePin(hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
  8000d40:	683b      	ldr	r3, [r7, #0]
- 8000d42:	687a      	ldr	r2, [r7, #4]
- 8000d44:	b291      	uxth	r1, r2
+ 8000d42:	681b      	ldr	r3, [r3, #0]
+ 8000d44:	88b9      	ldrh	r1, [r7, #4]
  8000d46:	2200      	movs	r2, #0
  8000d48:	4618      	mov	r0, r3
  8000d4a:	f000 fd94 	bl	8001876 <HAL_GPIO_WritePin>
@@ -1168,97 +1168,97 @@ float distance_cm(ultrasonic hcsr04){
  8000d4e:	2002      	movs	r0, #2
  8000d50:	f7ff ffbc 	bl	8000ccc <uDelay>
 
-	HAL_GPIO_WritePin(hcsr04.trig_port, &hcsr04.trig_pin, GPIO_PIN_SET);
- 8000d54:	6838      	ldr	r0, [r7, #0]
- 8000d56:	463b      	mov	r3, r7
- 8000d58:	3304      	adds	r3, #4
- 8000d5a:	b29b      	uxth	r3, r3
- 8000d5c:	2201      	movs	r2, #1
- 8000d5e:	4619      	mov	r1, r3
- 8000d60:	f000 fd89 	bl	8001876 <HAL_GPIO_WritePin>
+	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_SET);
+ 8000d54:	683b      	ldr	r3, [r7, #0]
+ 8000d56:	681b      	ldr	r3, [r3, #0]
+ 8000d58:	88b9      	ldrh	r1, [r7, #4]
+ 8000d5a:	2201      	movs	r2, #1
+ 8000d5c:	4618      	mov	r0, r3
+ 8000d5e:	f000 fd8a 	bl	8001876 <HAL_GPIO_WritePin>
 	uDelay(10);
- 8000d64:	200a      	movs	r0, #10
- 8000d66:	f7ff ffb1 	bl	8000ccc <uDelay>
-	HAL_GPIO_WritePin(hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
- 8000d6a:	683b      	ldr	r3, [r7, #0]
- 8000d6c:	687a      	ldr	r2, [r7, #4]
- 8000d6e:	b291      	uxth	r1, r2
- 8000d70:	2200      	movs	r2, #0
- 8000d72:	4618      	mov	r0, r3
- 8000d74:	f000 fd7f 	bl	8001876 <HAL_GPIO_WritePin>
+ 8000d62:	200a      	movs	r0, #10
+ 8000d64:	f7ff ffb2 	bl	8000ccc <uDelay>
+	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
+ 8000d68:	683b      	ldr	r3, [r7, #0]
+ 8000d6a:	681b      	ldr	r3, [r3, #0]
+ 8000d6c:	88b9      	ldrh	r1, [r7, #4]
+ 8000d6e:	2200      	movs	r2, #0
+ 8000d70:	4618      	mov	r0, r3
+ 8000d72:	f000 fd80 	bl	8001876 <HAL_GPIO_WritePin>
 
-	while(HAL_GPIO_ReadPin(hcsr04.echo_port,hcsr04.echo_pin) == GPIO_PIN_RESET);
- 8000d78:	bf00      	nop
- 8000d7a:	68bb      	ldr	r3, [r7, #8]
- 8000d7c:	68fa      	ldr	r2, [r7, #12]
- 8000d7e:	b292      	uxth	r2, r2
- 8000d80:	4611      	mov	r1, r2
- 8000d82:	4618      	mov	r0, r3
- 8000d84:	f000 fd60 	bl	8001848 <HAL_GPIO_ReadPin>
- 8000d88:	4603      	mov	r3, r0
- 8000d8a:	2b00      	cmp	r3, #0
- 8000d8c:	d0f5      	beq.n	8000d7a <distance_cm+0x4a>
+	while(HAL_GPIO_ReadPin(*hcsr04.echo_port, hcsr04.echo_pin) == GPIO_PIN_RESET);
+ 8000d76:	bf00      	nop
+ 8000d78:	68bb      	ldr	r3, [r7, #8]
+ 8000d7a:	681b      	ldr	r3, [r3, #0]
+ 8000d7c:	89ba      	ldrh	r2, [r7, #12]
+ 8000d7e:	4611      	mov	r1, r2
+ 8000d80:	4618      	mov	r0, r3
+ 8000d82:	f000 fd61 	bl	8001848 <HAL_GPIO_ReadPin>
+ 8000d86:	4603      	mov	r3, r0
+ 8000d88:	2b00      	cmp	r3, #0
+ 8000d8a:	d0f5      	beq.n	8000d78 <distance_cm+0x48>
 
-	while(HAL_GPIO_ReadPin(hcsr04.echo_port,hcsr04.echo_pin) == GPIO_PIN_SET)
- 8000d8e:	e005      	b.n	8000d9c <distance_cm+0x6c>
+	while(HAL_GPIO_ReadPin(*hcsr04.echo_port, hcsr04.echo_pin) == GPIO_PIN_SET)
+ 8000d8c:	e005      	b.n	8000d9a <distance_cm+0x6a>
 	{
 		 cont++;
- 8000d90:	697b      	ldr	r3, [r7, #20]
- 8000d92:	3301      	adds	r3, #1
- 8000d94:	617b      	str	r3, [r7, #20]
+ 8000d8e:	697b      	ldr	r3, [r7, #20]
+ 8000d90:	3301      	adds	r3, #1
+ 8000d92:	617b      	str	r3, [r7, #20]
 		 uDelay(2);
- 8000d96:	2002      	movs	r0, #2
- 8000d98:	f7ff ff98 	bl	8000ccc <uDelay>
-	while(HAL_GPIO_ReadPin(hcsr04.echo_port,hcsr04.echo_pin) == GPIO_PIN_SET)
- 8000d9c:	68bb      	ldr	r3, [r7, #8]
- 8000d9e:	68fa      	ldr	r2, [r7, #12]
- 8000da0:	b292      	uxth	r2, r2
- 8000da2:	4611      	mov	r1, r2
- 8000da4:	4618      	mov	r0, r3
- 8000da6:	f000 fd4f 	bl	8001848 <HAL_GPIO_ReadPin>
- 8000daa:	4603      	mov	r3, r0
- 8000dac:	2b01      	cmp	r3, #1
- 8000dae:	d0ef      	beq.n	8000d90 <distance_cm+0x60>
+ 8000d94:	2002      	movs	r0, #2
+ 8000d96:	f7ff ff99 	bl	8000ccc <uDelay>
+	while(HAL_GPIO_ReadPin(*hcsr04.echo_port, hcsr04.echo_pin) == GPIO_PIN_SET)
+ 8000d9a:	68bb      	ldr	r3, [r7, #8]
+ 8000d9c:	681b      	ldr	r3, [r3, #0]
+ 8000d9e:	89ba      	ldrh	r2, [r7, #12]
+ 8000da0:	4611      	mov	r1, r2
+ 8000da2:	4618      	mov	r0, r3
+ 8000da4:	f000 fd50 	bl	8001848 <HAL_GPIO_ReadPin>
+ 8000da8:	4603      	mov	r3, r0
+ 8000daa:	2b01      	cmp	r3, #1
+ 8000dac:	d0ef      	beq.n	8000d8e <distance_cm+0x5e>
 	};
 
 	return (cont + 0.0f)*2.8*speedSound;
- 8000db0:	6978      	ldr	r0, [r7, #20]
- 8000db2:	f7ff fea1 	bl	8000af8 <__aeabi_ui2f>
- 8000db6:	4603      	mov	r3, r0
- 8000db8:	f04f 0100 	mov.w	r1, #0
- 8000dbc:	4618      	mov	r0, r3
- 8000dbe:	f7ff fdeb 	bl	8000998 <__addsf3>
- 8000dc2:	4603      	mov	r3, r0
- 8000dc4:	4618      	mov	r0, r3
- 8000dc6:	f7ff fb27 	bl	8000418 <__aeabi_f2d>
- 8000dca:	a311      	add	r3, pc, #68	; (adr r3, 8000e10 <distance_cm+0xe0>)
- 8000dcc:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8000dd0:	f7ff fb7a 	bl	80004c8 <__aeabi_dmul>
- 8000dd4:	4603      	mov	r3, r0
- 8000dd6:	460c      	mov	r4, r1
- 8000dd8:	4618      	mov	r0, r3
- 8000dda:	4621      	mov	r1, r4
- 8000ddc:	a30e      	add	r3, pc, #56	; (adr r3, 8000e18 <distance_cm+0xe8>)
- 8000dde:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8000de2:	f7ff fb71 	bl	80004c8 <__aeabi_dmul>
- 8000de6:	4603      	mov	r3, r0
- 8000de8:	460c      	mov	r4, r1
- 8000dea:	4618      	mov	r0, r3
- 8000dec:	4621      	mov	r1, r4
- 8000dee:	f04f 0200 	mov.w	r2, #0
- 8000df2:	f04f 4380 	mov.w	r3, #1073741824	; 0x40000000
- 8000df6:	f7ff fc91 	bl	800071c <__aeabi_ddiv>
- 8000dfa:	4603      	mov	r3, r0
- 8000dfc:	460c      	mov	r4, r1
- 8000dfe:	4618      	mov	r0, r3
- 8000e00:	4621      	mov	r1, r4
- 8000e02:	f7ff fd73 	bl	80008ec <__aeabi_d2f>
- 8000e06:	4603      	mov	r3, r0
+ 8000dae:	6978      	ldr	r0, [r7, #20]
+ 8000db0:	f7ff fea2 	bl	8000af8 <__aeabi_ui2f>
+ 8000db4:	4603      	mov	r3, r0
+ 8000db6:	f04f 0100 	mov.w	r1, #0
+ 8000dba:	4618      	mov	r0, r3
+ 8000dbc:	f7ff fdec 	bl	8000998 <__addsf3>
+ 8000dc0:	4603      	mov	r3, r0
+ 8000dc2:	4618      	mov	r0, r3
+ 8000dc4:	f7ff fb28 	bl	8000418 <__aeabi_f2d>
+ 8000dc8:	a311      	add	r3, pc, #68	; (adr r3, 8000e10 <distance_cm+0xe0>)
+ 8000dca:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 8000dce:	f7ff fb7b 	bl	80004c8 <__aeabi_dmul>
+ 8000dd2:	4603      	mov	r3, r0
+ 8000dd4:	460c      	mov	r4, r1
+ 8000dd6:	4618      	mov	r0, r3
+ 8000dd8:	4621      	mov	r1, r4
+ 8000dda:	a30f      	add	r3, pc, #60	; (adr r3, 8000e18 <distance_cm+0xe8>)
+ 8000ddc:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 8000de0:	f7ff fb72 	bl	80004c8 <__aeabi_dmul>
+ 8000de4:	4603      	mov	r3, r0
+ 8000de6:	460c      	mov	r4, r1
+ 8000de8:	4618      	mov	r0, r3
+ 8000dea:	4621      	mov	r1, r4
+ 8000dec:	f04f 0200 	mov.w	r2, #0
+ 8000df0:	f04f 4380 	mov.w	r3, #1073741824	; 0x40000000
+ 8000df4:	f7ff fc92 	bl	800071c <__aeabi_ddiv>
+ 8000df8:	4603      	mov	r3, r0
+ 8000dfa:	460c      	mov	r4, r1
+ 8000dfc:	4618      	mov	r0, r3
+ 8000dfe:	4621      	mov	r1, r4
+ 8000e00:	f7ff fd74 	bl	80008ec <__aeabi_d2f>
+ 8000e04:	4603      	mov	r3, r0
 }
- 8000e08:	4618      	mov	r0, r3
- 8000e0a:	371c      	adds	r7, #28
- 8000e0c:	46bd      	mov	sp, r7
- 8000e0e:	bd90      	pop	{r4, r7, pc}
+ 8000e06:	4618      	mov	r0, r3
+ 8000e08:	371c      	adds	r7, #28
+ 8000e0a:	46bd      	mov	sp, r7
+ 8000e0c:	bd90      	pop	{r4, r7, pc}
+ 8000e0e:	bf00      	nop
  8000e10:	66666666 	.word	0x66666666
  8000e14:	40066666 	.word	0x40066666
  8000e18:	04816f00 	.word	0x04816f00
