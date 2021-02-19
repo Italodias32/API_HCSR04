@@ -1,0 +1,8 @@
+HCSR04.c:3:12:HCSR04_generate	40	static
+HCSR04.c:12:6:uDelay	16	static
+HCSR04.c:24:7:distance_cm	40	static
+HCSR04.c:45:7:distance_m	32	static
+HCSR04.c:49:7:distance_mm	32	static
+HCSR04.c:53:7:forwardSpeed	48	static
+HCSR04.c:61:7:crossSpeed	40	static
+HCSR04.c:79:6:itsBetween	32	static

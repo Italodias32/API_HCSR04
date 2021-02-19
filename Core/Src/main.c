@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "HCSR04.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -29,7 +30,6 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-#define usTIM TIM4
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -56,15 +56,11 @@ static void MX_GPIO_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
-void usDelay(uint32_t uSec);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-const float speedOfSound = 0.0343/2;
-float distance = 0;
 
-char uartBuf[100];
 /* USER CODE END 0 */
 
 /**
@@ -74,7 +70,7 @@ char uartBuf[100];
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  uint32_t ticks = 0;
+	float distance = 0;
 
   /* USER CODE END 1 */
 
@@ -99,10 +95,12 @@ int main(void)
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,GPIO_PIN_SET);
+  //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,GPIO_PIN_SET);
   HAL_Delay(5000);
+  ultrasonic hcsr04 = HCSR04_generate(GPIOA, GPIO_PIN_9, GPIOA, GPIO_PIN_8);
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,GPIO_PIN_RESET);
-  HAL_Delay(5000);
+
+
 
   /* USER CODE END 2 */
 
@@ -110,48 +108,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,GPIO_PIN_RESET);
-	  usDelay(3);
-
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,GPIO_PIN_SET);
-	  usDelay(10);
-	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,GPIO_PIN_RESET);
-
-	  while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_RESET);
-
-	  ticks = 0;
-	  while((HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == GPIO_PIN_SET))
-	  {
-	  		ticks++;
-	  		usDelay(2); //2.8usec
-	  };
-
-	  //4. Estimate distance in cm
-	  distance = (ticks + 0.0f)*2.8*speedOfSound;
-
-	  //5. Print to UART terminal for debugging
-	  //sprintf(uartBuf, "Distance (cm)  = %.1f\r\n", distance);
-	  HAL_UART_Transmit(&huart2, (uint8_t *)uartBuf, strlen(uartBuf), 100);
-
+	  distance = distance_cm(hcsr04);
 	  if(distance < 10){
-		  	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
-		  	  HAL_Delay(100);
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,GPIO_PIN_SET);
+		  HAL_Delay(5000);
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,GPIO_PIN_RESET);
 	  }
-	  else{
-	  		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-	  		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
-	  }
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9,GPIO_PIN_RESET);
-	  //Uart
-	  //sprintf(uartBuf, "Distance (cm) = %.1\r\n", distance);
-	  //HAL_UART_Transmit(&huart2, (uint8_t*)uartBuf, strlen(uartBuf), 100);
-	  //HAL_Delay(1000);
-	  }
+
+  }
   /* USER CODE END 3 */
 }
 
@@ -311,17 +278,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void usDelay(uint32_t uSec){
-	if(uSec < 2){
-		uSec = 2;
-	}
-	usTIM->ARR = uSec - 1;
-	usTIM->EGR = 1;
-	usTIM->SR &= ~1;
-	usTIM->CR1 |= 1;
-	while((usTIM->SR&0x0001) != 1);
-	usTIM->SR &= ~(0x0001);
-}
+
 /* USER CODE END 4 */
 
 /**
