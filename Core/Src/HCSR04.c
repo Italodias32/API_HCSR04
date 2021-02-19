@@ -1,9 +1,9 @@
 /*
- * ***************************************************************
+ ******************************************************************************************************************************
  *  API name    : HCSR04
- *  API files   : HCSR04.c, HCSR04.c
+ *  API files   : HCSR04.c, HCSR04.h
  *  file		: HCSR04.c
- *  authors		: Italo Dias, Sarah Carine
+ *  authors		: Italo Dias, Sarah Oliveira
  *  university  : Federal University of Minas Gerais
  *  license     : GNU General Public License v3.0
  *  date        : 02/19/21
@@ -12,26 +12,46 @@
  *
  *  This API was developed as an assignment for Embedded Systems
  *  Programming class at the Federal University of Minas Gerais
- ***************************************************************
+ *
+ ******************************************************************************************************************************
+ *  References:
+ *  Tutorial 37 - HC-SR05 Ultrasonic Sensor
+ *  user Github: MYaqoobEmbedded and Kefirr Grzegorz
+ *  authors:
+ *  link code: https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2037%20-%20HC-SR05%20Ultrasonic%20Sensor
+ *
+ *  LCD_20x4
+ *  user Github: elisabacelar and Bloq96
+ *  authors: Elisa Bacelar and Gabriel Araújo
+ *  link code: https://github.com/elisabacelar/LCD_20x4
+ *
+ *  Display_API
+ *  user Github: vcaitite and AmandaARTeixeira
+ *  authors: Vitor Gabrie Reis Caitite and Amanda Alkmim Rezende Teixeira
+ *  link code: https://github.com/vcaitite/Display_API
  *  SOFTWARE SETUP:
  *  Include HCSR04.h in main.c
  *
- ***************************************************************
- *  HARDWARE SETUP:
+ ******************************************************************************************************************************
+ *  SOFTWARE SETUP:
+ *  Include HCSR04.h in main.c
  *
+******************************************************************************************************************************
+ *  HARDWARE SETUP:
  *  VSS = GND
  *  VDD = 5v
  *  Trigger = - Connect in Digital Pin - Output
  *  Echo = - Connect in Digital Pin - Input
- *****************************************************************
+ *
+ ******************************************************************************************************************************
  */
 #include "HCSR04.h"
 
-///********************************* Global Variables ***************************************/
+///*************************************************** Global Variables *******************************************************/
 float gain = 2.8;
 
-///******************************* Function definitions *************************************/
-///**************************** Static function definition **********************************/
+///************************************************** Function definitions ****************************************************/
+///********************************************** Static function definition **************************************************/
 /**
   * @brief Microsecond delay
   * @param[microSec] Microsecond delay time
@@ -131,7 +151,7 @@ float distance_inch(ultrasonic hcsr04){
 /**
   * @brief Indicates the speed relative to the sensor direction
   * @param[hcsr04] Ultrasonic object
-  * @param[time] Time interval for speed calculation
+  * @param[time] Time interval for speed calculation in s
   * @retval Float indicating the speed at which the object approaches or moves away from the sensor
   */
 float forwardSpeed(ultrasonic hcsr04, float time){
@@ -145,8 +165,8 @@ float forwardSpeed(ultrasonic hcsr04, float time){
 /**
   * @brief Indicates the speed of occurrence of 2 consecutive events
   * @param[hcsr04] Ultrasonic object
-  * @param[distance] Route size for speed calculation
-  * @param[underLimit] Detected minimum value
+  * @param[distance] Route size for speed calculation in m
+  * @param[underLimit] Detected minimum value in cm
   * @retval Float with the detection speed value of two following events
   */
 float crossSpeed(ultrasonic hcsr04, float distance, float underLimit){
@@ -170,8 +190,8 @@ float crossSpeed(ultrasonic hcsr04, float distance, float underLimit){
 /**
   * @brief Indicates whether an object is within the range
   * @param[hcsr04] Ultrasonic object
-  * @param[underLimit] Under limit of the value range
-  * @param[upperLimit] Upper limit of the value range
+  * @param[underLimit] Under limit of the value range in cm
+  * @param[upperLimit] Upper limit of the value range in cm
   * @retval Boolean indicating whether the object is within the limits
   */
 bool itsBetween(ultrasonic hcsr04, float underLimit, float upperLimit){

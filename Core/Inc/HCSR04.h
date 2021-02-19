@@ -1,9 +1,9 @@
 /*
- * ***************************************************************
+******************************************************************************************************************************
  *  API name    : HCSR04
- *  API files   : HCSR04.c, HCSR04.c
+ *  API files   : HCSR04.c, HCSR04.h
  *  file		: HCSR04.h
- *  authors		: Italo Dias, Sarah Carine
+ *  authors		: Italo Dias, Sarah Oliveira
  *  university  : Federal University of Minas Gerais
  *  license     : GNU General Public License v3.0
  *  date        : 02/19/21
@@ -12,24 +12,42 @@
  *
  *  This API was developed as an assignment for Embedded Systems
  *  Programming class at the Federal University of Minas Gerais
- ***************************************************************
+ *
+ ******************************************************************************************************************************
+ *  References:
+ *  Tutorial 37 - HC-SR05 Ultrasonic Sensor
+ *  user Github: MYaqoobEmbedded and Kefirr Grzegorz
+ *  authors:
+ *  link code: https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2037%20-%20HC-SR05%20Ultrasonic%20Sensor
+ *
+ *  LCD_20x4
+ *  user Github: elisabacelar and Bloq96
+ *  authors: Elisa Bacelar and Gabriel Araújo
+ *  link code: https://github.com/elisabacelar/LCD_20x4
+ *
+ *  Display_API
+ *  user Github: vcaitite and AmandaARTeixeira
+ *  authors: Vitor Gabrie Reis Caitite and Amanda Alkmim Rezende Teixeira
+ *  link code: https://github.com/vcaitite/Display_API
+ *
+******************************************************************************************************************************
  *  SOFTWARE SETUP:
  *  Include HCSR04.h in main.c
  *
- ***************************************************************
+******************************************************************************************************************************
  *  HARDWARE SETUP:
- *
  *  VSS = GND
  *  VDD = 5v
  *  Trigger = - Connect in Digital Pin - Output
  *  Echo = - Connect in Digital Pin - Input
- *****************************************************************
+ *
+******************************************************************************************************************************
  */
 
 #ifndef HCSR04_H
 #define HCSR04_H
 
-///************************************ Includes ****************************************/
+///*********************************************************** Includes *****************************************************/
 //Header
 #include "stm32f1xx_hal.h"
 #include "main.h"
@@ -39,12 +57,12 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-///************************************ Defines *****************************************/
+///*********************************************************** Defines *****************************************************/
 #define microTIM TIM4
 #define speedSound  0.0343/2
 #define pass (void)0
 
-///*********************************** Structures ***************************************/
+///********************************************************* Structures *****************************************************/
 typedef GPIO_TypeDef* GPIO_Port;
 typedef uint16_t GPIO_Pin;
 typedef struct{
@@ -55,7 +73,7 @@ typedef struct{
 	GPIO_Pin echo_pin;
 }ultrasonic;
 
-/*********************************** Public functions ***********************************/
+///**************************************************** Public functions *****************************************************/
 ultrasonic HCSR04_generate(GPIO_Port port_trig[],GPIO_Pin pin_trig,GPIO_Port port_echo[],GPIO_Pin pin_echo);
 void uDelay(uint32_t microSec);
 void adjustment(float gainFactor);
