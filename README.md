@@ -68,7 +68,7 @@ This function receives the value read by the ultrasonic sensor, hcsr04, a lower 
 2. Set the clock to the desired frequency (in this case TIM4 at 64MHz)
 
 <br/>
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607650-5e5c4900-73a0-11eb-9c4d-0310e688ae97.png" width=450></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607150-6797e680-739d-11eb-9b43-79412d8d5832.png" width=450></div>
 <br/>
 
 3. Include the HCSR04.h and HCSR04.c files in the Inc and Src folders, respectively
