@@ -51,7 +51,7 @@ An application example for this function would be to run on circular tracks, suc
 - ### bool itsBetween(ultrasonic* hcsr04, float underLimit, float upperLimit);
 This function receives the value read by the ultrasonic sensor, hcsr04, a lower distance value and a higher value. Then, it returns true if the value is within these limits or false, otherwise.
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108588036-dccfd100-7335-11eb-977a-b0776d8ae880.gif" width=1200></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108588036-dccfd100-7335-11eb-977a-b0776d8ae880.gif" width=600></div>
 
 ## Example
 In the main.c file include the HCSR04.h file
