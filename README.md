@@ -12,7 +12,7 @@ This is an API developed for the HC-SR04 sensor, the work was developed on the N
 
 This API was developed during the Embedded Systems Programming course, taught by Prof. Ricardo Duarte, at the Federal University of Minas Gerais in February 2021. All API development was done with assistance.
 
-The code is organized into two folders. The first one, HCSR04, contains the files HCSR04.h and HCSR05.c. The second one contains an example developed using the API and a Arduino Shield MFS (MultiFuncShield) as support.
+The code is organized into two folders. The first one, HCSR04, contains the files HCSR04.h. The second one contains an example developed using the OLED Display, based on Alexandre Lutsai's function library. Available at this link: [stm32libs](https://github.com/SL-RU/stm32libs).
 
 
 ## API Fucctions
@@ -52,6 +52,8 @@ An application example for this function would be to run on circular tracks, suc
 - ### bool itsBetween(ultrasonic* hcsr04, float underLimit, float upperLimit);
 This function receives the value read by the ultrasonic sensor, hcsr04, a lower distance value and a higher value. Then, it returns true if the value is within these limits or false, otherwise.
 
+![gif](https://user-images.githubusercontent.com/38631264/108588036-dccfd100-7335-11eb-977a-b0776d8ae880.gif)
+
 ## Example
 In the main.c file include the HCSR04.h file
 ```c
@@ -76,3 +78,5 @@ Use the distance value to turn on a led
 [LCD_20x4](https://github.com/elisabacelar/LCD_20x4) - by: elisabacelar and Bloq96
 
 [Display_API](https://github.com/vcaitite/Display_API) - by: vcaitite and AmandaARTeixeira
+
+[stm32libs](https://github.com/SL-RU/stm32libs) - by: Alexander Lutsai - SL-RU
