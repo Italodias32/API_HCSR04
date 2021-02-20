@@ -97,7 +97,7 @@ ultrasonic hcsr04 = HCSR04_generate(GPIOA, GPIO_PIN_9, GPIOA, GPIO_PIN_8);
 7. Test the application
 
 <br/>
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607643-569ca480-73a0-11eb-9e34-5deca4364a70.gif" width=600></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607643-569ca480-73a0-11eb-9e34-5deca4364a70.gif" width=600 rotate(90deg)></div>
 <br/>
 
 ## References
