@@ -29,8 +29,6 @@
  *  user Github: vcaitite and AmandaARTeixeira
  *  authors: Vitor Gabrie Reis Caitite and Amanda Alkmim Rezende Teixeira
  *  link code: https://github.com/vcaitite/Display_API
- *  SOFTWARE SETUP:
- *  Include HCSR04.h in main.c
  *
  ******************************************************************************************************************************
  *  SOFTWARE SETUP:
@@ -40,8 +38,8 @@
  *  HARDWARE SETUP:
  *  VSS = GND
  *  VDD = 5v
- *  Trigger = - Connect in Digital Pin - Output
- *  Echo = - Connect in Digital Pin - Input
+ *  Trigger = - Connected in Digital Pin - Output
+ *  Echo = - Connected in Digital Pin - Input
  *
  ******************************************************************************************************************************
  */
@@ -70,7 +68,7 @@ void uDelay(uint32_t microSec){
 }
 
 /**
-  * @brief Create a hcsr04 sensor
+  * @brief Creates a configuration for HCSR04 sensor
   * @param[port_trig] Trig port configuration
   * @param[pin_trig] Trig pin configuration
   * @param[port_echo] Echo port configuration
@@ -87,7 +85,7 @@ ultrasonic HCSR04_generate(GPIO_Port port_trig[],GPIO_Pin pin_trig,GPIO_Port por
 }
 
 /**
-  * @brief Adjust the gain for fine adjustments during execution
+  * @brief Adjusts the gain for fine adjustments during execution
   * @param[gainFactor] Gain value for adjustment
   * @retval None
   */
@@ -96,7 +94,7 @@ void adjustment(float gainFactor){
 }
 
 /**
-  * @brief Indicates the value in cm
+  * @brief Indicates the distance value from an object in cm
   * @param[hcsr04] Ultrasonic object
   * @retval Distance in cm
   */
@@ -122,7 +120,7 @@ float distance_cm(ultrasonic hcsr04){
 }
 
 /**
-  * @brief Indicates the value in m
+  * @brief Indicates the distance value from an object in m
   * @param[hcsr04] Ultrasonic object
   * @retval Distance in m
   */
@@ -131,7 +129,7 @@ float distance_m(ultrasonic hcsr04){
 }
 
 /**
-  * @brief Indicates the value in mm
+  * @brief Indicates the distance value from an object in mm
   * @param[hcsr04] Ultrasonic object
   * @retval Distance in mm
   */
@@ -140,7 +138,7 @@ float distance_mm(ultrasonic hcsr04){
 }
 
 /**
-  * @brief Indicates the value in inches
+  * @brief Indicates the distance value from an object in inches
   * @param[hcsr04] Ultrasonic object
   * @retval Distance in inches
   */
@@ -153,7 +151,7 @@ float distance_inch(ultrasonic hcsr04){
   * @param[hcsr04] Ultrasonic object
   * @param[time] Time interval for speed calculation in s
   * @retval Float indicating the speed at which the object approaches or moves away from the sensor
-  */
+  */na veloc
 float forwardSpeed(ultrasonic hcsr04, float time){
 	float x_i = distance_m(hcsr04);
 	int delta_t = (int)1000*time;
@@ -166,7 +164,7 @@ float forwardSpeed(ultrasonic hcsr04, float time){
   * @brief Indicates the speed of occurrence of 2 consecutive events
   * @param[hcsr04] Ultrasonic object
   * @param[distance] Route size for speed calculation in m
-  * @param[underLimit] Detected minimum value in cm
+  * @param[underLimit] Minimum distance value detected in cm
   * @retval Float with the detection speed value of two following events
   */
 float crossSpeed(ultrasonic hcsr04, float distance, float underLimit){
@@ -188,10 +186,10 @@ float crossSpeed(ultrasonic hcsr04, float distance, float underLimit){
 }
 
 /**
-  * @brief Indicates whether an object is within the range
+  * @brief Indicates whether an object is within a distance range
   * @param[hcsr04] Ultrasonic object
-  * @param[underLimit] Under limit of the value range in cm
-  * @param[upperLimit] Upper limit of the value range in cm
+  * @param[underLimit] Under limit of the distance range in cm
+  * @param[upperLimit] Upper limit of the distance range in cm
   * @retval Boolean indicating whether the object is within the limits
   */
 bool itsBetween(ultrasonic hcsr04, float underLimit, float upperLimit){
