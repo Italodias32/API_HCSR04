@@ -1,6 +1,6 @@
 # API_HCSR04
 
-This is a HC-SR04 API for STM32 using STM32F103RB. 
+This is an HC-SR04 API for STM32 using STM32F103RB and developed in STMCubeIDE1.3.0
 
 Developed by Italo Dias and Sarah Oliveira
 
@@ -11,13 +11,13 @@ This is an API developed for the HC-SR04 sensor, the work was developed on the N
 
 This API was developed during the Embedded Systems Programming course, taught by Prof. Ricardo Duarte, at the Federal University of Minas Gerais in February 2021. All API development was done with assistance.
 
+About the API, it is important to comment that it was developed using Timer TIM4, internal clock of the STM32F103RB Core. If it is necessary to change the Timer or set a new clock, change it in: Library / HCSR04.h. The frequency was set at 64MHz. To change it, make the gain adjustment to suit the new frequency, it can be done manually in the code of the HCSR04.c file or at run time, using the "adjustment (float gainFactor)" function.
 
 ```c
 #define microTIM TIM4
 ```
 
-The code is organized into two folders. The first one, Library, contains the files HCSR04.h and HCSR04.c. The second one, Example, contains an example developed using the OLED Display, based on Alexandre Lutsai's function library, available at this link: [stm32libs](https://github.com/SL-RU/stm32libs).
-
+The code is organized into two folders. The first one, Library, contains the files HCSR04.h and HCSR04.c. The second one, Example, contains an example developed using the OLED Display, based on Alexandre Lutsai's function library, available at this link: [stm32libs](https://github.com/SL-RU/stm32libs). In example available, another important observation is about the Trig and Echo pins, which were defined in the application as PA9 and PA8, respectively. However, they can be changed, as long as they are digital. Trig was defined as output and Echo as input.
 
 ## API Fucctions
 - ### ultrasonic HCSR04_generate(GPIO_Port port_trig[],GPIO_Pin pin_trig,GPIO_Port port_echo[],GPIO_Pin pin_echo);
@@ -59,6 +59,14 @@ This function receives the value read by the ultrasonic sensor, hcsr04, a lower 
 <div align="center"><img src="https://user-images.githubusercontent.com/38631264/108588036-dccfd100-7335-11eb-977a-b0776d8ae880.gif" width=600></div>
 
 ## Example
+Start a project Select a trigger pin as an output (in this case GPIOA - GPIO_PIN_9) and an echo pin as an input (in this case GPIOA - GPIO_PIN_8). A third output pin is chosen and connected to an LED (in this case GPIOA - GPIO_PIN_6)
+
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108606842-6665ba00-739b-11eb-9685-011fcc5ef132.png" width=450></div>
+
+Set the clock to the desired frequency (in this case TIM4 at 64MHz)
+
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108606842-6665ba00-739b-11eb-9685-011fcc5ef132.png" width=450></div>
+
 In the main.c file include the HCSR04.h file
 ```c
 #include "HCSR04.h"
