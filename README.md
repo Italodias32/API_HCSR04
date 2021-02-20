@@ -65,11 +65,11 @@ This function receives the value read by the ultrasonic sensor, hcsr04, a lower 
 
 2. Set the clock to the desired frequency (in this case TIM4 at 64MHz)
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607150-6797e680-739d-11eb-9b43-79412d8d5832.png" width=450></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607650-5e5c4900-73a0-11eb-9c4d-0310e688ae97.png" width=450></div>
 
 3. Include the HCSR04.h and HCSR04.c files in the Inc and Src folders, respectively
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607150-6797e680-739d-11eb-9b43-79412d8d5832.png" width=450></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607646-58666800-73a0-11eb-9e85-d47e7353f059.png" width=450></div>
 
 4. In the main.c file include the HCSR04.h file
 ```c
@@ -90,7 +90,8 @@ ultrasonic hcsr04 = HCSR04_generate(GPIOA, GPIO_PIN_9, GPIOA, GPIO_PIN_8);
 ```
 7. Test the application
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607150-6797e680-739d-11eb-9b43-79412d8d5832.png" width=450></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607643-569ca480-73a0-11eb-9e34-5deca4364a70.gif" width=600></div>
+
 ## References
 [Tutorial 37 - HC-SR05 Ultrasonic Sensor](https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2037%20-%20HC-SR05%20Ultrasonic%20Sensor) - by: MYaqoobEmbedded and Kefirr Grzegorz
 
