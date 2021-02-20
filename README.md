@@ -90,7 +90,7 @@ ultrasonic hcsr04 = HCSR04_generate(GPIOA, GPIO_PIN_9, GPIOA, GPIO_PIN_8);
  distance = distance_cm(&hcsr04);
  if(distance < 10){
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,GPIO_PIN_SET);
-	HAL_Delay(5000);
+	HAL_Delay(1000);
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6,GPIO_PIN_RESET);
  }
 ```
