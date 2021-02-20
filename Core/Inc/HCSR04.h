@@ -38,8 +38,8 @@
  *  HARDWARE SETUP:
  *  VSS = GND
  *  VDD = 5v
- *  Trigger = - Connect in Digital Pin - Output
- *  Echo = - Connect in Digital Pin - Input
+ *  Trigger = - Connected in Digital Pin - Output
+ *  Echo = - Connected in Digital Pin - Input
  *
 ******************************************************************************************************************************
  */
