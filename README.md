@@ -11,7 +11,7 @@ This is an API developed for the HC-SR04 sensor, the work was developed on the N
 
 This API was developed during the Embedded Systems Programming course, taught by Prof. Ricardo Duarte, at the Federal University of Minas Gerais in February 2021. All API development was done with assistance.
 
-The code is organized into two folders. The first one, HCSR04, contains the files HCSR04.h. The second one contains an example developed using the OLED Display, based on Alexandre Lutsai's function library. Available at this link: [stm32libs](https://github.com/SL-RU/stm32libs).
+The code is organized into two folders. The first one, Library, contains the files HCSR04.h and HCSR04.c. The second one, Example, contains an example developed using the OLED Display, based on Alexandre Lutsai's function library, available at this link: [stm32libs](https://github.com/SL-RU/stm32libs).
 
 
 ## API Fucctions
