@@ -74,7 +74,7 @@ This function receives the value read by the ultrasonic sensor, hcsr04, a lower 
 3. Include the HCSR04.h and HCSR04.c files in the Inc and Src folders, respectively
 
 <br/>
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607646-58666800-73a0-11eb-9e85-d47e7353f059.png" width=450></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108608116-813c2c80-73a3-11eb-8825-de269c9e06a9.png" width=450></div>
 <br/>
 
 4. In the main.c file include the HCSR04.h file
