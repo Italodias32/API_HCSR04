@@ -95,7 +95,9 @@ ultrasonic hcsr04 = HCSR04_generate(GPIOA, GPIO_PIN_9, GPIOA, GPIO_PIN_8);
  }
 ```
 7. Test the application
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607917-2eae4080-73a2-11eb-88dd-1819804c1e70.gif" width=600></div>
+<br/>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607643-569ca480-73a0-11eb-9e34-5deca4364a70.gif" width=600></div>
+<br/>
 
 ## References
 [Tutorial 37 - HC-SR05 Ultrasonic Sensor](https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2037%20-%20HC-SR05%20Ultrasonic%20Sensor) - by: MYaqoobEmbedded and Kefirr Grzegorz
