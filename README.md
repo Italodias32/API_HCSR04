@@ -4,7 +4,7 @@ This is a HC-SR04 API for STM32 using STM32F103RB.
 
 Developed by Italo Dias and Sarah Oliveira
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108587390-05ee6280-7332-11eb-86ab-a64ab0032239.jpeg" width="200"></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108587390-05ee6280-7332-11eb-86ab-a64ab0032239.jpeg" width="1000"></div>
 
 ## Introduction
 This is an API developed for the HC-SR04 sensor, the work was developed on the Nucleo Board STM32f103RBT6. The API is ready for use on other Boards in the family, however the user must change the HCSR04.h file, placing the include relative to the board used.
@@ -51,7 +51,7 @@ An application example for this function would be to run on circular tracks, suc
 - ### bool itsBetween(ultrasonic* hcsr04, float underLimit, float upperLimit);
 This function receives the value read by the ultrasonic sensor, hcsr04, a lower distance value and a higher value. Then, it returns true if the value is within these limits or false, otherwise.
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108588036-dccfd100-7335-11eb-977a-b0776d8ae880.gif" width=200></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108588036-dccfd100-7335-11eb-977a-b0776d8ae880.gif" width=1200></div>
 
 ## Example
 In the main.c file include the HCSR04.h file
