@@ -61,10 +61,10 @@
 #define microTIM TIM4
 #define speedSound  0.0343/2
 #define pass (void)0
+#define GPIO_Port GPIO_TypeDef*
+#define GPIO_Pin uint16_t
 
 ///********************************************************* Structures *****************************************************/
-typedef GPIO_TypeDef* GPIO_Port;
-typedef uint16_t GPIO_Pin;
 typedef struct{
 	GPIO_Port* trig_port;
 	GPIO_Pin trig_pin;
@@ -77,12 +77,12 @@ typedef struct{
 ultrasonic HCSR04_generate(GPIO_Port port_trig[],GPIO_Pin pin_trig,GPIO_Port port_echo[],GPIO_Pin pin_echo);
 void uDelay(uint32_t microSec);
 void adjustment(float gainFactor);
-float distance_cm(ultrasonic hcsr04);
-float distance_m(ultrasonic hcsr04);
-float distance_mm(ultrasonic hcsr04);
-float distance_inch(ultrasonic hcsr04);
-float forwardSpeed(ultrasonic hcsr04, float time);
-float crossSpeed(ultrasonic hcsr04, float distance, float underLimit);
-bool itsBetween(ultrasonic hcsr04, float underLimit, float upperLimit);
+float distance_cm(ultrasonic* hcsr04);
+float distance_m(ultrasonic* hcsr04);
+float distance_mm(ultrasonic* hcsr04);
+float distance_inch(ultrasonic* hcsr04);
+float forwardSpeed(ultrasonic* hcsr04, float time);
+float crossSpeed(ultrasonic* hcsr04, float distance, float underLimit);
+bool itsBetween(ultrasonic* hcsr04, float underLimit, float upperLimit);
 
 #endif /* HCSR04_H */

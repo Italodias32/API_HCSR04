@@ -20,10 +20,12 @@ Core/Src/HCSR04.o: ../Core/Src/HCSR04.c ../Core/Inc/HCSR04.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/main.h
 
 ../Core/Inc/HCSR04.h:
@@ -70,12 +72,16 @@ Core/Src/HCSR04.o: ../Core/Src/HCSR04.c ../Core/Inc/HCSR04.h \
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
+
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
+
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h:
+
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h:
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
-
-../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 
 ../Core/Inc/main.h:

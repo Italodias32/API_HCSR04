@@ -98,19 +98,19 @@ void adjustment(float gainFactor){
   * @param[hcsr04] Ultrasonic object
   * @retval Distance in cm
   */
-float distance_cm(ultrasonic hcsr04){
+float distance_cm(ultrasonic* hcsr04){
 	uint32_t cont = 0;
 
-	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
-	uDelay(2);
+	HAL_GPIO_WritePin(hcsr04->trig_port, hcsr04->trig_pin, GPIO_PIN_RESET);
+	uDelay(3);
 
-	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(hcsr04->trig_port, hcsr04->trig_pin, GPIO_PIN_SET);
 	uDelay(10);
-	HAL_GPIO_WritePin(*hcsr04.trig_port, hcsr04.trig_pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(hcsr04->trig_port, hcsr04->trig_pin, GPIO_PIN_RESET);
 
-	while(HAL_GPIO_ReadPin(*hcsr04.echo_port, hcsr04.echo_pin) == GPIO_PIN_RESET);
+	while(HAL_GPIO_ReadPin(hcsr04->echo_port, hcsr04->echo_pin) == GPIO_PIN_RESET);
 
-	while(HAL_GPIO_ReadPin(*hcsr04.echo_port, hcsr04.echo_pin) == GPIO_PIN_SET)
+	while(HAL_GPIO_ReadPin(hcsr04->echo_port, hcsr04->echo_pin) == GPIO_PIN_SET)
 	{
 		 cont++;
 		 uDelay(2);
@@ -124,7 +124,7 @@ float distance_cm(ultrasonic hcsr04){
   * @param[hcsr04] Ultrasonic object
   * @retval Distance in m
   */
-float distance_m(ultrasonic hcsr04){
+float distance_m(ultrasonic* hcsr04){
 	return distance_cm(hcsr04)/100;
 }
 
@@ -133,7 +133,7 @@ float distance_m(ultrasonic hcsr04){
   * @param[hcsr04] Ultrasonic object
   * @retval Distance in mm
   */
-float distance_mm(ultrasonic hcsr04){
+float distance_mm(ultrasonic* hcsr04){
 	return distance_cm(hcsr04)*10;
 }
 
@@ -142,7 +142,7 @@ float distance_mm(ultrasonic hcsr04){
   * @param[hcsr04] Ultrasonic object
   * @retval Distance in inches
   */
-float distance_inch(ultrasonic hcsr04){
+float distance_inch(ultrasonic* hcsr04){
 	return distance_cm(hcsr04)/2.54;
 }
 
@@ -151,8 +151,8 @@ float distance_inch(ultrasonic hcsr04){
   * @param[hcsr04] Ultrasonic object
   * @param[time] Time interval for speed calculation in s
   * @retval Float indicating the speed at which the object approaches or moves away from the sensor
-  */na veloc
-float forwardSpeed(ultrasonic hcsr04, float time){
+  */
+float forwardSpeed(ultrasonic* hcsr04, float time){
 	float x_i = distance_m(hcsr04);
 	int delta_t = (int)1000*time;
 	HAL_Delay(delta_t);
@@ -167,7 +167,7 @@ float forwardSpeed(ultrasonic hcsr04, float time){
   * @param[underLimit] Minimum distance value detected in cm
   * @retval Float with the detection speed value of two following events
   */
-float crossSpeed(ultrasonic hcsr04, float distance, float underLimit){
+float crossSpeed(ultrasonic* hcsr04, float distance, float underLimit){
 	int flag = 0;
 	int cont = 0;
 	while(1){
@@ -192,7 +192,7 @@ float crossSpeed(ultrasonic hcsr04, float distance, float underLimit){
   * @param[upperLimit] Upper limit of the distance range in cm
   * @retval Boolean indicating whether the object is within the limits
   */
-bool itsBetween(ultrasonic hcsr04, float underLimit, float upperLimit){
+bool itsBetween(ultrasonic* hcsr04, float underLimit, float upperLimit){
 	if((distance_cm(hcsr04) > underLimit) & (distance_cm(hcsr04) > upperLimit)){
 		return true;
 	}

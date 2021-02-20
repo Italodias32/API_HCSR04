@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project>
-	<configuration id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.774861836" name="Debug">
+	<configuration id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.116919614" name="Debug">
 		<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
 			<provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
 			<provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
@@ -12,7 +12,7 @@
 			</provider>
 		</extension>
 	</configuration>
-	<configuration id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.release.827105759" name="Release">
+	<configuration id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.release.712500184" name="Release">
 		<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
 			<provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
 			<provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>

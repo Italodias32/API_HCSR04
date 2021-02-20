@@ -24,24 +24,24 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-API_HCSR04.elf \
+Example.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-API_HCSR04.list \
+Example.list \
 
 OBJCOPY_BIN += \
-API_HCSR04.bin \
+Example.bin \
 
 
 # All Target
-all: API_HCSR04.elf secondary-outputs
+all: Example.elf secondary-outputs
 
 # Tool invocations
-API_HCSR04.elf: $(OBJS) $(USER_OBJS) C:\Users\Italo\STM32CubeIDE\workspace_1.3.0\API_HCSR04\STM32F103RBTX_FLASH.ld
-	arm-none-eabi-gcc -o "API_HCSR04.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Italo\STM32CubeIDE\workspace_1.3.0\API_HCSR04\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="API_HCSR04.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Example.elf: $(OBJS) $(USER_OBJS) C:\Users\Italo\STM32CubeIDE\workspace_1.3.0\Example\STM32F103RBTX_FLASH.ld
+	arm-none-eabi-gcc -o "Example.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Italo\STM32CubeIDE\workspace_1.3.0\Example\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -50,13 +50,13 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-API_HCSR04.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "API_HCSR04.list"
+Example.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Example.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-API_HCSR04.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "API_HCSR04.bin"
+Example.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "Example.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
