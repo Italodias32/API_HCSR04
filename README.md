@@ -4,6 +4,8 @@ This is a HC-SR04 API for STM32 using STM32F103RB.
 
 Developed by Italo Dias and Sarah Oliveira
 
+![imagem](https://user-images.githubusercontent.com/38631264/108587390-05ee6280-7332-11eb-86ab-a64ab0032239.jpeg)
+
 ## Introduction
 
 This is an API developed for the HC-SR04 sensor, the work was developed on the Nucleo Board STM32f103RBT6. The API is ready for use on other Boards in the family, however the user must change the HCSR04.h file, placing the include relative to the board used.
