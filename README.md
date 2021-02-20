@@ -1,4 +1,4 @@
-# HCSR04 API
+# API_HCSR04
 
 This is a HC-SR04 API for STM32 using STM32F103RB. 
 
