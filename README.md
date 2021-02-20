@@ -61,11 +61,11 @@ This function receives the value read by the ultrasonic sensor, hcsr04, a lower 
 ## Example
 Start a project Select a trigger pin as an output (in this case GPIOA - GPIO_PIN_9) and an echo pin as an input (in this case GPIOA - GPIO_PIN_8). A third output pin is chosen and connected to an LED (in this case GPIOA - GPIO_PIN_6)
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108606842-6665ba00-739b-11eb-9685-011fcc5ef132.png" width=450></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607145-636bc900-739d-11eb-8598-da4a8167bd3a.png" width=450></div>
 
 Set the clock to the desired frequency (in this case TIM4 at 64MHz)
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108606842-6665ba00-739b-11eb-9685-011fcc5ef132.png" width=450></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607150-6797e680-739d-11eb-9b43-79412d8d5832.png" width=450></div>
 
 In the main.c file include the HCSR04.h file
 ```c
