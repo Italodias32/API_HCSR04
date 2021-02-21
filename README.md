@@ -26,7 +26,7 @@ This function creates the HCSR04 sensor module. As parameters, are passed the po
 
 - ### void uDelay(uint32_t microSec);
 This function creates a time delay in microseconds using the Timer chosen by the programmer for the API. Its use is necessary to validate the other functions of the code.
-The HAL_Delay () function receives integer parameters corresponding to the time in milliseconds. However, to work with smaller units, it may be necessary to use the uDelay function, since the sensor works with values ​​in the microsecond range.
+The HAL_Delay() function receives integer parameters corresponding to the time in milliseconds. However, to work with smaller units, it may be necessary to use the uDelay function, since the sensor works with values ​​in the microsecond range.
 The Function is based on the method used in the following reference, the credits relating to the creation of the method belonging to the author:
 [Tutorial 37 - HC-SR05 Ultrasonic Sensor](https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2037%20-%20HC-SR05%20Ultrasonic%20Sensor)
 
