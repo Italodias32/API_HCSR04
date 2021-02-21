@@ -34,7 +34,7 @@ The Function is based on the method used in the following reference, the credits
 This function changes the global gain variation, in order to obtain greater measurement accuracy, and the user can configure this parameter with a potentiometer, for example.
 
 - ### float distance_cm(ultrasonic* hcsr04);
-This function receives the value read by the ultrasonic sensor and based on this value it executes the measurement routine. First, the Trig has a high pulse for a period of 10us, to trigger the system. Then, the sensor sends 8 pulses of 25us and the code waits for the Echo value to return. When the Echo is high, a counter is started using the uDelay() function. The function returns the distance by multiplying the time obtained from the Echo pulse by the speed of sound divided by 2.
+This function receives the value read by the ultrasonic sensor and based on this value it executes the measurement routine. First, the Trig has a high pulse for a period of 10us, to trigger the system. Then, the sensor sends 8 pulses of 40kHz and the code waits for the Echo value to return. When the Echo is high, a counter is started using the uDelay() function. The function returns the distance by multiplying the time obtained from the Echo pulse by the speed of sound divided by 2.
 
 - ### float distance_m(ultrasonic* hcsr04);
 This function receives the value read by the ultrasonic sensor, and in order to obtain the distance between an object and the sensor in meters, divides the return of the distance_cm function by 100.
