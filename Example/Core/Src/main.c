@@ -140,7 +140,7 @@ int main(void)
 	  SSD1306_Puts (msg3, &Font_11x18, 1);
 	  SSD1306_UpdateScreen(); // update display
 
-	  HAL_Delay(1000);
+	  HAL_Delay(2000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
