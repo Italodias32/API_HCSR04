@@ -59,33 +59,33 @@ This function receives the value read by the ultrasonic sensor, hcsr04, a lower 
 <div align="center"><img src="https://user-images.githubusercontent.com/38631264/108588036-dccfd100-7335-11eb-977a-b0776d8ae880.gif" width=600></div>
 
 ## Example
-1. Start a project Select a trigger pin as an output (in this case GPIOA - GPIO_PIN_9) and an echo pin as an input (in this case GPIOA - GPIO_PIN_8). A third output pin is chosen and connected to an LED (in this case GPIOA - GPIO_PIN_6)
+1. Start a project Select a trigger pin as an output (in this case GPIOA - GPIO_PIN_9) and an echo pin as an input (in this case GPIOA - GPIO_PIN_8), a third output pin is chosen and connected to an LED (in this case GPIOA - GPIO_PIN_6):
 
 <br/>
 <div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607145-636bc900-739d-11eb-8598-da4a8167bd3a.png" width=450></div>
 <br/>
 
-2. Set the clock to the desired frequency (in this case TIM4 at 64MHz)
+2. Set the clock to the desired frequency (in this case TIM4 at 64MHz):
 
 <br/>
 <div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607150-6797e680-739d-11eb-9b43-79412d8d5832.png" width=450></div>
 <br/>
 
-3. Include the HCSR04.h and HCSR04.c files in the Inc and Src folders, respectively
+3. Include the HCSR04.h and HCSR04.c files in the Inc and Src folders, respectively:
 
 <br/>
 <div align="center"><img src="https://user-images.githubusercontent.com/38631264/108608116-813c2c80-73a3-11eb-8825-de269c9e06a9.png" width=450></div>
 <br/>
 
-4. In the main.c file include the HCSR04.h file
+4. In the main.c file include the HCSR04.h file:
 ```c
 #include "HCSR04.h"
 ```
-5. Initialize the sensor
+5. Initialize the sensor:
 ```c
 ultrasonic hcsr04 = HCSR04_generate(GPIOA, GPIO_PIN_9, GPIOA, GPIO_PIN_8);
 ```
-6. Use the distance value to turn on a led
+6. Use the distance value to turn on a led:
 ```c
 while(1){
  	distance = distance_cm(&hcsr04);
@@ -96,10 +96,11 @@ while(1){
  	}
  }
 ```
-7. Test the application
+7. Test the application:
 <br/>
 <div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607643-569ca480-73a0-11eb-9e34-5deca4364a70.gif" width=600></div>
 <br/>
+ 
 
 ## References
 [Tutorial 37 - HC-SR05 Ultrasonic Sensor](https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2037%20-%20HC-SR05%20Ultrasonic%20Sensor) - by: MYaqoobEmbedded and Kefirr Grzegorz
