@@ -22,7 +22,7 @@ The code is organized into two folders. The first one, Library, contains the fil
 ## API Fucctions
 - ### ultrasonic HCSR04_generate(GPIO_Port port_trig[],GPIO_Pin pin_trig,GPIO_Port port_echo[],GPIO_Pin pin_echo);
 
-This library creates the HCSR04 sensor module. As parameters, are passed the port type and the port number of Trig and Echo, in this order. Then, the function returns a structure variable of type ultrasonic, which contains the necessary parameters for using the library.
+This function creates the HCSR04 sensor module. As parameters, are passed the port type and the port number of Trig and Echo, in this order. Then, the function returns a structure variable of type ultrasonic, which contains the necessary parameters for using the library.
 
 - ### void uDelay(uint32_t microSec);
 This function creates a time delay in microseconds using the Timer chosen by the programmer for the API. Its use is necessary to validate the other functions of the code.
