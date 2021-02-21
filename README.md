@@ -95,10 +95,12 @@ while(1){
  
 
 ## References
-[Tutorial 37 - HC-SR05 Ultrasonic Sensor](https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2037%20-%20HC-SR05%20Ultrasonic%20Sensor) - by: MYaqoobEmbedded and Kefirr Grzegorz
+[Tutorial 37 - HC-SR05 Ultrasonic Sensor](https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2037%20-%20HC-SR05%20Ultrasonic%20Sensor) - By: MYaqoobEmbedded and Kefirr Grzegorz
 
-[LCD_20x4](https://github.com/elisabacelar/LCD_20x4) - by: elisabacelar and Bloq96
+[LCD_20x4](https://github.com/elisabacelar/LCD_20x4) - By: elisabacelar and Bloq96
 
-[Display_API](https://github.com/vcaitite/Display_API) - by: vcaitite and AmandaARTeixeira
+[Display_API](https://github.com/vcaitite/Display_API) - By: vcaitite and AmandaARTeixeira
 
-[stm32libs](https://github.com/SL-RU/stm32libs) - by: Alexander Lutsai - SL-RU
+[stm32libs](https://github.com/SL-RU/stm32libs) - By: Alexander Lutsai - SL-RU
+
+[HC-SR04 Ultrasonic Sensor](https://components101.com/ultrasonic-sensor-working-pinout-datasheet) - More about HC-SR04
