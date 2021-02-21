@@ -11,7 +11,7 @@ This is an API developed for the HC-SR04 sensor, the work was developed on the N
 
 This API was developed during the Embedded Systems Programming course, taught by Prof. Ricardo Duarte, at the Federal University of Minas Gerais in February 2021. All API development was done with assistance.
 
-About the API, it is important to comment that it was developed using Timer TIM4, internal clock of the STM32F103RB Core. If it is necessary to change the Timer or set a new clock, change it in: Library / HCSR04.h. The frequency was set at 64MHz. To change it, make the gain adjustment to suit the new frequency, it can be done manually in the code of the HCSR04.c file or at run time, using the "adjustment (float gainFactor)" function.
+About the API, it is important to comment that it was developed using Timer TIM4, internal clock of the STM32F103RB Core. If it is necessary to change the Timer or set a new clock, change it in: HCSR04.h. The frequency was set at 64MHz. To change it, make the gain adjustment to suit the new frequency, it can be done manually in the code of the HCSR04.c file or at run time, using the "adjustment (float gainFactor)" function.
 
 ```c
 #define microTIM TIM4
