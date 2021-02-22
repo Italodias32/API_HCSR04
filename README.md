@@ -51,7 +51,7 @@ while(1){
 ```
 7. Test the application:
 <br/>
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108763495-31d73700-7530-11eb-8e5f-a98515d9b477.gif" width=800></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108763495-31d73700-7530-11eb-8e5f-a98515d9b477.gif" width=600></div>
 <br/>
 
 ## API Fucctions
