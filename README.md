@@ -91,11 +91,21 @@ This function receives the value read by the ultrasonic sensor, and in order to 
   valor_m = distance_m(&hcsr04);
   valor_mm = distance_mm(&hcsr04);
   ```
-![WhatsApp Image 2021-02-22 at 15 52 23](https://user-images.githubusercontent.com/38631264/108755805-76f66b80-7526-11eb-917c-bd70f0e7e3e5.jpeg)
+<br/>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108755805-76f66b80-7526-11eb-917c-bd70f0e7e3e5.jpeg" width=600></div>
+<br/>
 
 - ### float forwardSpeed(ultrasonic* hcsr04, float time);
 This function calculates the instantaneous speed of an object that approaches or moves away from the sensor. First, it receives the parameter hcsr04 read by the ultrasonic sensor, a time value that can be understood as a time distance. The Sensor reads the distance at the first instant, waits for a time equal to the time variable, then it reads the distance value again. By calculating the difference between the positions and dividing the result by time, an estimate of the instantaneous speed in meters per second is obtained.
 In addition to calculating speed, the function would be useful, for example, in control systems, however it is advisable to use different boards or MCUs for the controller and instrumentation, mainly for the use of this function, which causes a pause in the process, due delay.
+
+#### Example
+Get the speed of an object
+
+```c
+v = forwardSpeed(&hcsr04,1);
+sprintf(msg1, "v = %2.2f", v);
+```
 
 <br/>
 <div align="center"><img src="https://user-images.githubusercontent.com/38631264/108759821-a22f8980-752b-11eb-85aa-e84e1e6729bc.gif" width=600></div>
@@ -104,6 +114,17 @@ In addition to calculating speed, the function would be useful, for example, in 
 - ### float crossSpeed(ultrasonic* hcsr04, float distance, float underLimit);
 This function calculates the speed at which an object crosses the sensor twice in a row. First the object crosses the sensor, starting a counter, then the object crosses the sensor again, paralyzing the counter. The time difference is taken and, based on the distance of the route, the speed is obtained.
 An application example for this function would be to run on circular tracks, such as athletics tracks. Initially the corridor crosses the sensor, initializing the counter, and soon after, when crossing the sensor again, the function returns the average speed of the corridor in the course.
+
+#### Example
+Get the speed at which an object passes the sensor
+```c
+v = crossSpeed(&hcsr04, 10, 10);
+sprintf(msg1, "v = %2.2f", v);
+```
+
+<br/>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108761779-0a7f6a80-752e-11eb-9c92-1a949c207122.gif" width=600></div>
+<br/>
 
 - ### bool itsBetween(ultrasonic* hcsr04, float underLimit, float upperLimit);
 This function receives the value read by the ultrasonic sensor, hcsr04, a lower distance value and a higher value. Then, it returns true if the value is within these limits or false, otherwise.
