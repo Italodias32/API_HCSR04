@@ -19,8 +19,6 @@ About the API, it is important to comment that it was developed using Timer TIM4
 
 The code is organized into two folders. The first one, Library, contains the files HCSR04.h and HCSR04.c. The second one, Example, contains an example developed using the OLED Display, based on Alexandre Lutsai's function library, available at this link: [stm32libs](https://github.com/SL-RU/stm32libs). In example available, another important observation is about the Trig and Echo pins, which were defined in the application as PA9 and PA8, respectively. However, they can be changed, as long as they are digital. Trig was defined as output and Echo as input.
 
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108588036-dccfd100-7335-11eb-977a-b0776d8ae880.gif" width=600></div>
-
 ## Example
 1. Start a project Select a trigger pin as an output (in this case GPIOA - GPIO_PIN_9) and an echo pin as an input (in this case GPIOA - GPIO_PIN_8), a third output pin is chosen and connected to an LED (in this case GPIOA - GPIO_PIN_6).
 
@@ -53,7 +51,7 @@ while(1){
 ```
 7. Test the application:
 <br/>
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607643-569ca480-73a0-11eb-9e34-5deca4364a70.gif" width=600></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108607643-569ca480-73a0-11eb-9e34-5deca4364a70.gif" width=800></div>
 <br/>
 
 ## API Fucctions
@@ -123,7 +121,7 @@ sprintf(msg1, "v = %2.2f", v);
 ```
 
 <br/>
-<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108761779-0a7f6a80-752e-11eb-9c92-1a949c207122.gif" width=600></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/38631264/108762139-7cf04a80-752e-11eb-858a-92ba80f0026e.gif" width=600></div>
 <br/>
 
 - ### bool itsBetween(ultrasonic* hcsr04, float underLimit, float upperLimit);
